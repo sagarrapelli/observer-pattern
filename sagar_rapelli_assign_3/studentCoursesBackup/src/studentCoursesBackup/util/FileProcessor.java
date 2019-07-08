@@ -1,4 +1,4 @@
-package myArrayList.util;
+package studentCoursesBackup.util;
 
 import java.util.Scanner;
 import java.io.File;
