@@ -1,6 +1,7 @@
 
 package studentCoursesBackup.driver;
-    
+
+import myArrayList.util.FileProcessor;    
 /**
  * @author AuthorName
  *
@@ -23,7 +24,16 @@ package studentCoursesBackup.driver;
 		    System.exit(0);
 	    } // end of if
 	    
-	    System.out.println("Hello World! Lets get started with the assignment");
-	    
+	    FileProcessor file = new FileProcessor(args[0]);
+	 	String s2 = "no";
+		
+		//loop for reading contents from the input file
+		while(true) {
+			String s1 = fp.readLine();
+			if(s1.equals(s2))
+				break;
+			else
+				// do required thing here
+		}
 	}  // end public static void main
     }  // end public class Driver
