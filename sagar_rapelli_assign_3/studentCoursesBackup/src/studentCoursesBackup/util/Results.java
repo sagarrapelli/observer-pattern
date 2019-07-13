@@ -1,6 +1,7 @@
 package studentCoursesBackup.util;
 
 import java.io.FileWriter;
+import studentCoursesBackup.util.MyLogger.DebugLevel;
 
 public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	private FileWriter fileWriter;
@@ -13,6 +14,8 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface {
 	 */
 	public Results() {
 		string = "";
+		if(MyLogger.getDebugValue() == DebugLevel.CONSTRUCTOR)
+			System.out.println("Constructor: Results obj created");
 	}
 	
 	/**

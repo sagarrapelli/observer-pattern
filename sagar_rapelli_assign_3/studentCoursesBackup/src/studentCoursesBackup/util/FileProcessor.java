@@ -1,6 +1,9 @@
 package studentCoursesBackup.util;
 
 import java.util.Scanner;
+
+import studentCoursesBackup.util.MyLogger.DebugLevel;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -18,7 +21,8 @@ public class FileProcessor {
 	 * 
 	 */
 	public FileProcessor() {
-		
+		if(MyLogger.getDebugValue() == DebugLevel.CONSTRUCTOR)
+			System.out.println("Constructor: FileProcessor obj created");
 	}
 	
 	/**

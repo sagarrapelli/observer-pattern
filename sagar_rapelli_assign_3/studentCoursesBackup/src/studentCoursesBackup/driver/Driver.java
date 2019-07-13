@@ -2,8 +2,10 @@
 package studentCoursesBackup.driver;
 
 import studentCoursesBackup.util.FileProcessor;
+import studentCoursesBackup.util.MyLogger;
 import studentCoursesBackup.util.Results;
 import studentCoursesBackup.util.TreeBuilder;
+
 /**
  * @author SagarRapelli
  *
@@ -26,6 +28,7 @@ public class Driver {
 		    System.exit(0);
 	    } // end of if
 	    
+	    MyLogger.setDebugValue(Integer.parseInt(args[5]));
 	    FileProcessor file = new FileProcessor();
 	    file.openFile(args[0]);
 	    TreeBuilder t = new TreeBuilder();

@@ -1,37 +1,31 @@
 package studentCoursesBackup.myTree;
 
-//import java.util.List;
-
 import studentCoursesBackup.util.Results;
+import studentCoursesBackup.util.MyLogger;
+import studentCoursesBackup.util.MyLogger.DebugLevel;
 
 public class Tree {
 	
 	public Node root;
-
+	
 	public Tree() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "Tree [toString()=" + super.toString() + "]";
+		if(MyLogger.getDebugValue() == DebugLevel.CONSTRUCTOR)
+			System.out.println("Constructor: Tree created");		
 	}
 	
 	public void insert(Node n) {
+		
 		if(root == null)
 			root = n;
 		else { 
-			//System.out.println("here");
 			Node temp = root;
 			while (temp != null) {
 				if (temp.bNo > n.bNo && temp.left == null) {
 					temp.left = n;
-					//System.out.println("left insertion");
 					break;
 				}
 				else if (temp.bNo < n.bNo && temp.right == null) {
 					temp.right = n;
-					//System.out.println("right insertion");
 					break;
 				}
 				else if (temp.bNo > n.bNo)
@@ -68,23 +62,37 @@ public class Tree {
 	
 	public void updateNode (Node n, String s) {
 		
-		if(n.courses.contains(s))
-			System.out.println("contains the same");
+		if(n.courses.contains(s)) {
+			if(MyLogger.getDebugValue() == DebugLevel.FROM_RESULTS)
+				System.out.println("\nCurrent input " + n.bNo + ": " +s+ " .\nNode already contains the course "+s);
+		}
 			
 		else {
 			n.courses.add(s);
-			System.out.println("address of " + n);
-			n.notifyAll(s, 0);
+			if(MyLogger.getDebugValue() == DebugLevel.IN_RESULTS)
+				System.out.println("\nNode "+ n.bNo + " updated: course added "+s);
+			n.notifyAll(s, Operation.add);
 		}
 	}
 	
 	public void deleteNodeContents (Node n, String s) {
-		if(n.courses.contains(s));{
+		
+		if(n.courses.contains(s)){
 			n.courses.remove(s);
-			n.notifyAll(s, 1);
+			if(MyLogger.getDebugValue() == DebugLevel.IN_RESULTS)
+				System.out.println("\nNode "+ n.bNo + " updated: course deleted "+s);
+			n.notifyAll(s, Operation.delete);
+		}
+		
+		else {
+			if(MyLogger.getDebugValue() == DebugLevel.FROM_RESULTS)
+				System.out.println("\nCurrent delete input " + n.bNo + ": " +s+ " .\nNode does not have the course "+s);
 		}
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Tree ";
+	}
 
 }
