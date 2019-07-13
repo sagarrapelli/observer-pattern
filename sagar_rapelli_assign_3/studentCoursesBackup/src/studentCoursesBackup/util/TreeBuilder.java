@@ -48,17 +48,22 @@ public class TreeBuilder{
 		if(MyLogger.getDebugValue() == DebugLevel.IN_RUN)
 			System.out.println("Node "+ n.bNo + " created at address " + n +"\n");
 		
-		Node backup1 = new Node(bNo, course);
+		Node backup1 = clone(n);
 		n.add(backup1);
-		t1.insert(backup1);
 		
-		Node backup2 = new Node(bNo, course);
+		Node backup2 = clone(n);
 		n.add(backup2);
+		
+		t1.insert(backup1);
 		t2.insert(backup2);
 		
 		if(MyLogger.getDebugValue() == DebugLevel.CONSTRUCTOR)
 			System.out.print("\n");
 		
+	}
+	
+	public Node clone(Node n) {
+		return new Node(n.bNo, n.courses.get(0));
 	}
 	
 	public void delete (int bNo, String course) {
@@ -82,5 +87,6 @@ public class TreeBuilder{
 	public String toString() {
 		return "TreeBuilder";
 	}
+	
 
 }
