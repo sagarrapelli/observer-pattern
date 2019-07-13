@@ -1,13 +1,15 @@
 
 package studentCoursesBackup.driver;
 
-import myArrayList.util.FileProcessor;    
+import studentCoursesBackup.util.FileProcessor;
+import studentCoursesBackup.util.Results;
+import studentCoursesBackup.util.TreeBuilder;
 /**
- * @author AuthorName
+ * @author SagarRapelli
  *
  */
     
-    public class Driver {
+public class Driver {
 	
 	public static void main(String[] args) {
 	    
@@ -18,22 +20,51 @@ import myArrayList.util.FileProcessor;
 	     */
 
 	    // FIXME: update this if statement for this assignment
-	    if ( (args.length != 3) || args[0].equals("${arg0}") || args[1].equals("${arg1}") || args[2].equals("${arg2}")) {
+	    if ( (args.length != 6) || args[0].equals("${arg0}") || args[1].equals("${arg1}") || args[2].equals("${arg2}")) {
 		    
 		    System.err.println("Error: Incorrect number of arguments. Program accepts 6 argumnets.");
 		    System.exit(0);
 	    } // end of if
 	    
-	    FileProcessor file = new FileProcessor(args[0]);
+	    FileProcessor file = new FileProcessor();
+	    file.openFile(args[0]);
+	    TreeBuilder t = new TreeBuilder();
+	    
 	 	String s2 = "no";
 		
 		//loop for reading contents from the input file
 		while(true) {
-			String s1 = fp.readLine();
+			String s1 = file.readLine();
 			if(s1.equals(s2))
 				break;
-			else
-				// do required thing here
+			else {
+				String[] s = s1.split(":");
+				int bNo = Integer.parseInt(s[0]);
+				t.build(bNo, s[1]);
+			}
 		}
+		
+		file.openFile(args[1]);
+		//loop for reading contents from the delete file
+		while(true) {
+			String s1 = file.readLine();
+			if(s1.equals(s2))
+				break;
+			else {
+				String[] s = s1.split(":");
+				int bNo = Integer.parseInt(s[0]);
+				t.delete(bNo, s[1]);
+			}
+		}
+		
+		Results[] result = new Results[3];
+		for (int i = 0 ; i < result.length ; i++) {
+			result[i] = new Results();
+			t.printNodes(result[i], i+1);
+			result[i].writeToFile(args[i+2]);
+		}
+		
+		
+		
 	}  // end public static void main
-    }  // end public class Driver
+}// end public class Driver

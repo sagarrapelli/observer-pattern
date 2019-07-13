@@ -28,12 +28,12 @@ Description: Compiles your code and generates .class files inside the BUILD fold
 ## Instruction to run:
 
 ####Command: 
-ant -buildfile studentCoursesBackup/src/build.xml run -Darg0=<inputFile.txt> -Darg1=<outputFile.txt> -Darg2=<Logger-Value> 
+ant -buildfile studentCoursesBackup/src/build.xml run -Darg0=<inputFile.txt> -Darg1=<deleteFile.txt> -Darg2=<outputFile1.txt> -Darg3=<outputFile2.txt> -Darg4=<outputFile3.txt> -Darg5=<Logger-Value> 
 
 Example:
 
 The last argument is the Logger value. 
-ant -buildfile studentCoursesBackup/src/build.xml run -Darg0=inputFile.txt -Darg1=outputFile.txt -Darg2=3
+ant -buildfile studentCoursesBackup/src/build.xml run -Darg0=input.txt -Darg1=delete.txt -Darg2=outputFile1.txt -Darg3=outputFile2.txt -Darg4=outputFile3.txt -Darg5=3
 
 
 

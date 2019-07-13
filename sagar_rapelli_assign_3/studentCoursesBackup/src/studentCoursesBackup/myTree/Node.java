@@ -31,14 +31,20 @@ public class Node implements SubjectI, ObserverI{
 		}
 	}
 	
-	public void update(List<String> l) {
-		for (int i = 0 ; i < l.size() ; i++ )
-			courses.set(i, l.get(i));
+	public void update(String s) {
+			courses.add(s);
 	}
 	
-	public void notifyAll(List<String> l) {
+	public void removeCourse(String s) {
+		courses.remove(s);
+}
+	
+	public void notifyAll(String s, int flag) {
 		for(int i = 0 ; i < backup.length ; i++ )
-			backup[i].update(courses);
+			if(flag == 0)
+				backup[i].update(s);
+			else
+				backup[i].removeCourse(s);
 	}
 	
 	public String toString() {

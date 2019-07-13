@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface SubjectI{
 	public void add(Node n);
-	public void notifyAll(List<String> courses);
+	public void notifyAll(String s, int flag);
 }

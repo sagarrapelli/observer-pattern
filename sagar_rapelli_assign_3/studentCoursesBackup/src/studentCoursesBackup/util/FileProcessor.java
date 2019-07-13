@@ -26,14 +26,16 @@ public class FileProcessor {
 	 *
 	 * @param String filename
 	 */
-	public FileProcessor(String filename) {
+	public void openFile(String filename) {
 		try {
 			file = new File(filename);
 			sc = new Scanner(file);
 			
 		}
 		catch(FileNotFoundException fn) {
-			System.out.println("fnfe");
+			System.out.println("File not found");
+			fn.printStackTrace();
+			System.exit(1);
 		}
 	}
 	

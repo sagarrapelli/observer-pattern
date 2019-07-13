@@ -1,5 +1,7 @@
 package studentCoursesBackup.myTree;
 
+//import java.util.List;
+
 import studentCoursesBackup.util.Results;
 
 public class Tree {
@@ -19,14 +21,17 @@ public class Tree {
 		if(root == null)
 			root = n;
 		else { 
+			//System.out.println("here");
 			Node temp = root;
 			while (temp != null) {
 				if (temp.bNo > n.bNo && temp.left == null) {
 					temp.left = n;
+					//System.out.println("left insertion");
 					break;
 				}
 				else if (temp.bNo < n.bNo && temp.right == null) {
-					temp.left = n;
+					temp.right = n;
+					//System.out.println("right insertion");
 					break;
 				}
 				else if (temp.bNo > n.bNo)
@@ -54,7 +59,7 @@ public class Tree {
 	
 	public void printInOrder(Results r, Node n) {
 		
-		if(root != null) {
+		if(n != null) {
 			printInOrder(r, n.left);
 			r.storeNewResult(n.toString());
 			printInOrder(r, n.right);
@@ -62,21 +67,24 @@ public class Tree {
 	}
 	
 	public void updateNode (Node n, String s) {
-		if(n.courses.contains(s));
+		
+		if(n.courses.contains(s))
+			System.out.println("contains the same");
 			
 		else {
 			n.courses.add(s);
-			n.notifyAll(n.courses);
+			System.out.println("address of " + n);
+			n.notifyAll(s, 0);
 		}
 	}
 	
 	public void deleteNodeContents (Node n, String s) {
-		if(n.courses.contains(s));
-		
-		else {
+		if(n.courses.contains(s));{
 			n.courses.remove(s);
-			n.notifyAll(n.courses);
+			n.notifyAll(s, 1);
 		}
 	}
+
+	
 
 }
